@@ -34,6 +34,10 @@ var sliderDanceToo = [];
 var angle = 0;
 var mic;
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   // canvas.parent("canvasp");
@@ -296,5 +300,5 @@ function draw() {
   angle += 0.2; //the unit of measurement is in radiance
 
   var vol = mic.getLevel();
-  ellipse(width / 2, height / 2, vol * 10000, vol * 10000);
+  ellipse(width / 2, height / 2, vol * width);
 }
