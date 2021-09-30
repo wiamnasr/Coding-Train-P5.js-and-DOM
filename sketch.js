@@ -32,13 +32,18 @@ var sliderDance;
 var q = 151;
 var sliderDanceToo = [];
 var angle = 0;
+var mic;
 
 function setup() {
-  canvas = createCanvas(200, 200);
-  canvas.parent("canvasp");
+  canvas = createCanvas(windowWidth, windowHeight);
+  // canvas.parent("canvasp");
   canvas.mouseOver(overpara);
   canvas.mouseOut(outpara);
-  // canvas.position(1170, 480); //setting the position of my canvas! => this is the pixel coordinate for the entire page!
+  canvas.position(0, 0); //setting the position of my canvas! => this is the pixel coordinate for the entire page!
+  canvas.style("z-index", "-1");
+  mic = new p5.AudioIn();
+  mic.start();
+
   slider = createSlider(10, 100, 47); // creating a slider, with a min, max and starting value => to get the value out of the slider, we use a function called value();
   // slider.position(1200, 450);
   slider.parent("canvasp");
@@ -170,7 +175,7 @@ function imgDragOver() {
 }
 
 function imgDragLeave() {
-  dropzone.style("background-color", "green");
+  dropzone.style("background-color", "#CCC");
 }
 
 function clearImages() {
@@ -197,11 +202,17 @@ function addItem() {
 }
 
 function highlight() {
-  this.style("background-color", "pink").style("padding", "28pt");
+  this.style("background-color", "rgba(255, 192, 203, 0.596)").style(
+    "padding",
+    "28pt"
+  );
 }
 
 function unhighlight() {
-  this.style("background-color", "green").style("padding", "10pt");
+  this.style("background-color", "rgba(204, 204, 204, 0.664)").style(
+    "padding",
+    "10pt"
+  );
 }
 
 function updateParagraphFontSize() {
@@ -213,12 +224,12 @@ function updateParagraphText() {
 }
 
 function revertStyle() {
-  txt.style("background-color", "green");
+  txt.style("background-color", "rgba(0, 128, 0, 0.616)");
   txt.style("padding", "10pt");
 }
 
 function changeStyle() {
-  txt.style("background-color", "pink");
+  txt.style("background-color", "rgba(255, 192, 203, 0.596);");
   txt.style("padding", "25px");
 }
 
@@ -259,18 +270,18 @@ function draw() {
   background(bgcolor);
   // background(sliderDance.value());
   fill(230, 0, 100);
-  rect(x, y, 50, 50); // remember, the location of the rect is relative to the canvas itself
+  // rect(x, y, 50, 50); // remember, the location of the rect is relative to the canvas itself
   // meaning, as you move the canvas around, it still maintains its coordinates system relative to the canvas, only!
   // newParag.position(x + 400, y + 15); // this will be positioned relative to the page not the canvas
 
   // x += ranxdom(-5, 5); // adding animation to demonstrate that we are inside a draw loop here
   // slider.position(x + 735, y + 80);
-  ellipse(x - 50, y + 25, slider.value(), slider.value());
+  ellipse(windowWidth / 4, windowHeight / 1.8, slider.value(), slider.value());
 
   // nameP.html(nameInput.value()); //=> this has been commented out as its in the draw() fnction and is continously over-writing the mouseOver() and mouseOut()
   text(nameInput.value(), 10, 20);
 
-  ellipse(150, 50, random(100), random(100));
+  ellipse(windowWidth / 1.1, windowHeight / 25, random(100), random(100));
   sliderDance.value(q);
   q = q + random(-5, 5);
 
@@ -283,4 +294,7 @@ function draw() {
   }
 
   angle += 0.2; //the unit of measurement is in radiance
+
+  var vol = mic.getLevel();
+  ellipse(width / 2, height / 2, vol * 10000, vol * 10000);
 }
