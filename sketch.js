@@ -264,6 +264,10 @@ function randomPar() {
   );
 }
 
+function keyPressed() {
+  clear();
+}
+
 /*
 End of Function Declarations
 Start of draw loop
@@ -301,4 +305,7 @@ function draw() {
 
   var vol = mic.getLevel();
   ellipse(width / 2, height / 2, vol * width);
+  if (mouseIsPressed) {
+    line(pmouseX, pmouseY, mouseX, mouseY); //pmouseX and pmouseY are the previous mouse positions
+  }
 }
