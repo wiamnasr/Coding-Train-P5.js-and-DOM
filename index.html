@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Sketch</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+    <style>
+      body {
+        background-color: green;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Creating my first DOM project!</h1>
+    <p id="firstPara" class="paraS">
+      This project is to demonstrate how to navigate the DOM tree and make
+      web-page interactive using JS! Also this paragraph has a unique ID used to
+      access and modify its style (CSS Selector #firstPara)
+    </p>
+
+    <p class="paraS">
+      Demonstrating how to use CSS selectors to navigate the DOM tree, in this
+      paragraph, class was used to access and modify the style (CSS Selector:
+      .paraS)
+    </p>
+
+    <p class="paraS">
+      ...also Demonstrating how to use CSS selectors to navigate the DOM tree,
+      in this paragraph, class was used to access and modify the style (CSS
+      Selector: .paraS)
+    </p>
+
+    <p>
+      a plain paragraph without any class or id, CSS selector that targets all p
+      will affect it! (CSS Selector: p)
+    </p>
+
+    <h3>Parent and Child Elements</h3>
+    <p id="canvasp">This paragraph should include the canvas</p>
+    <p>I am a parent and a child element</p>
+
+    <h3>Creating a list</h3>
+
+    <ol id="orderedList"></ol>
+    <button id="orderedListButton">Create an entry in Ordered List</button>
+
+    <p id="imgPara">
+      <button id="clear">Clear Images</button>
+    </p>
+
+    <p id="dropzone">Drag your file here</p>
+
+    <div id="sliderDance">Slider Dance!</div>
+
+    <script src="sketch.js"></script>
+  </body>
+</html>
